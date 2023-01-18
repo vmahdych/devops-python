@@ -31,7 +31,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.ACR_NAME}}/python-app:latest,${{secrets.ACR_NAME}}/python-app:${{ steps.fetch_version.outputs.TAG }}
+          tags: ${{secrets.ACR_NAME}}/${{ secrets.IMAGE }}:latest,${{secrets.ACR_NAME}}/${{ secrets.IMAGE }}:${{ steps.fetch_version.outputs.TAG }}
  
   deploy:
     runs-on: ubuntu-20.04
@@ -49,19 +49,17 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: mahdych-devops 
-          cluster-name: python-app
+          resource-group: ${{ secrets.RESOURCE_GROUP }} 
+          cluster-name: ${{ secrets.CLUSTER_NAME }}
 
       - name: Run Helm Deploy
         run: |
           helm upgrade \
             --install \
             --create-namespace \
-            --atomic \
-            --wait \
             --namespace production \
             python-app \
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }}
-        #            --set image.tag=${GITHUB_REF##*/}
+            --set image.tag=${GITHUB_REF#refs/tags/}
