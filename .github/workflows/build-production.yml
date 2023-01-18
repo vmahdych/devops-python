@@ -60,7 +60,7 @@ jobs:
             --namespace production \
             python-app \
             ./kubernetes/python-app \
-            --set replicas=3
+            --set replicas=3 \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }} \
             --set image.tag=${GITHUB_REF#refs/tags/}
