@@ -11,7 +11,7 @@ def fetchDetails():
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<h1>Hello, World!</h1>"
 
 @app.route("/health")
 def health():
