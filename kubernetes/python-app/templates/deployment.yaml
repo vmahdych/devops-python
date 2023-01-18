@@ -4,6 +4,7 @@ metadata:
   name: python-app
   namespace: {{ default "staging" .Release.Namespace }}
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: python-app
