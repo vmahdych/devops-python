@@ -4,10 +4,10 @@ on:
   push:
     branches: [ main ]
     
-env:
-  IMAGE_NAME: python-app
-  RESOURCE_GROUP: mahdych-devops
-  CLUSTER_NAME: python-app 
+#env:
+  #IMAGE_NAME: python-app
+  #RESOURCE_GROUP: mahdych-devops
+  #CLUSTER_NAME: python-app 
   #CHART_PATH: "your-chart-path"
   #CHART_OVERRIDE_PATH: "your-chart-override-path"
 
@@ -33,7 +33,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ secrets.ACR_NAME }}/python-app:latest
        
  
   deploy:
@@ -52,8 +52,8 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ env.RESOURCE_GROUP }}
-          cluster-name: ${{ env.CLUSTER_NAME }} 
+          resource-group: mahdych-devops
+          cluster-name: python-app 
 
       - name: Run Helm Deploy
         run: |
