@@ -57,11 +57,11 @@ jobs:
           helm upgrade \
             --install \
             --create-namespace \
-            --atomic
-            --wait
+            --atomic \
+            --wait \
             --namespace production \
             python-app \
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
-            --set dns.name=${{ secrets.DNS_NAME }}
+            --set dns.name=${{ secrets.DNS_NAME }} \
             --set image.tag=${GITHUB_REF#refs/tags/}
