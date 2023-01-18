@@ -3,6 +3,13 @@ name: Build and push the latest build to staging
 on:
   push:
     branches: [ main ]
+    
+env:
+  IMAGE_NAME: python-app
+  RESOURCE_GROUP: mahdych-devops
+  CLUSTER_NAME: python-app 
+  CHART_PATH: "your-chart-path"
+  CHART_OVERRIDE_PATH: "your-chart-override-path"
 
 jobs:
   build_push_image:
@@ -26,7 +33,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.ACR_NAME}}/python-app:latest
+          tags: ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest
+       
  
   deploy:
     runs-on: ubuntu-20.04
@@ -44,8 +52,8 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: mahdych-devops
-          cluster-name: python-app
+          resource-group: ${{ env.RESOURCE_GROUP }}
+          cluster-name: ${{ env.CLUSTER_NAME }} 
 
       - name: Run Helm Deploy
         run: |
