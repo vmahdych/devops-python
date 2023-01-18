@@ -28,14 +28,12 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and push staging images
-        #uses: docker/build-push-action@v3.3.0
-        #with:
-          #context: .
-          #push: true
-          #tags: ${{ secrets.ACR_NAME }}/python-app:latest
-        run: |
-          az acr build --image ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ secrets.ACR_NAME }} -g ${{ env.RESOURCE_GROUP }} .
-
+        uses: docker/build-push-action@v3.3.0
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.ACR_NAME }}/${{ env.CONTAINER_NAME }}:latest
+       
  
   deploy:
     runs-on: ubuntu-20.04
