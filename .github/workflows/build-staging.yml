@@ -8,8 +8,8 @@ env:
   IMAGE_NAME: python-app
   RESOURCE_GROUP: mahdych-devops
   CLUSTER_NAME: python-app 
-  CHART_PATH: "your-chart-path"
-  CHART_OVERRIDE_PATH: "your-chart-override-path"
+  #CHART_PATH: "your-chart-path"
+  #CHART_OVERRIDE_PATH: "your-chart-override-path"
 
 jobs:
   build_push_image:
