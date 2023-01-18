@@ -56,6 +56,6 @@ jobs:
             --namespace staging \
             python-app \
             ./kubernetes/python-app \
-            --set replicas=3
+            --set replicas=3 \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }}
