@@ -1,43 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  python-webapp
-  namespace: default
-  labels:
-    app: web 
+  name: python-app
+  namespace: {{ default "staging" .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      app: web
-  replicas: 3
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+      app: python-app
   template:
     metadata:
       labels:
-        app:  web
+        app: python-app
     spec:
-      # initContainers:
-        # Init containers are exactly like regular containers, except:
-          # - Init containers always run to completion.
-          # - Each init container must complete successfully before the next one starts.
       containers:
-      - name: webapp 
-        image: webapp:1.1
-        imagePullPolicy: Never
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
-        ports:
-        - containerPort:  5000
-          name:  python-webapp
-      restartPolicy: Always
----
-
+        - image: {{ .Values.image.registry }}.azurecr.io/{{ .Values.image.name }}:{{ default "latest" .Values.image.tag }}
+          name: python-app
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 5000
+              name: python-app

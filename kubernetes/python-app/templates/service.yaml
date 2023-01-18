@@ -1,16 +1,14 @@
-# https://kubernetes.io/docs/concepts/services-networking/service/
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-service
-  namespace: default
+  name: python-app
+  namespace: {{ default "staging" .Release.Namespace }}
 spec:
-  selector:
-    app: web
-  type: NodePort
   ports:
-  - port: 80
-    targetPort: 5000
-    nodePort: 30001
----
-
+    - port: 80
+      protocol: TCP
+      targetPort: 5000
+      name: python-app
+  selector:
+    app: python-app
+  type: ClusterIP
