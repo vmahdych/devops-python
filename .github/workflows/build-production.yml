@@ -62,4 +62,4 @@ jobs:
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }}
-            --set image.tag=${GITHUB_REF#refs/tags/}
+        #--set image.tag=${GITHUB_REF#refs/tags/}
