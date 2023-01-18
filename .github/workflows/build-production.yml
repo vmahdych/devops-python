@@ -57,6 +57,7 @@ jobs:
           helm upgrade \
             --install \
             --create-namespace \
+            --atomic
             --namespace production \
             python-app \
             ./kubernetes/python-app \
