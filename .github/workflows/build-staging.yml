@@ -17,19 +17,19 @@ jobs:
       - name: Docker Login
         uses: docker/login-action@v2.1.0
         with:
-          #registry: ${{ secrets.ACR_NAME }} 
-          #username: ${{ secrets.ACR_LOGIN }}
-          #password: ${{ secrets.ACR_PASSWORD }}
-          registry: mahdychdevops
-          username: mahdychdevops
-          password: 2oUUMv2lC4ebrRcspEvGIQHkVzbzaeY1CvpWJ6OXfk+ACRDXNnjh
+          registry: ${{ secrets.ACR_NAME }} 
+          username: ${{ secrets.ACR_LOGIN }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and push staging images
         uses: docker/build-push-action@v3.3.0
         with:
           context: .
           push: true
-          tags: ${{secrets.ACR_NAME}}/python-app:latest
+          tags: ${{ secrets.ACR_NAME }}/python-app:latest
+        #run: |
+          #az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
+
  
   deploy:
     runs-on: ubuntu-20.04
