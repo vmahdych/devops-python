@@ -3,6 +3,12 @@ name: Build and push the latest build to staging
 on:
   push:
     branches: [ main ]
+    
+env:
+  CONTAINER_NAME: python-app
+  RESOURCE_GROUP: mahdych-devops
+  CHART_PATH: "your-chart-path"
+  CHART_OVERRIDE_PATH: "your-chart-override-path"
 
 jobs:
   build_push_image:
@@ -22,13 +28,13 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and push staging images
-        uses: docker/build-push-action@v3.3.0
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.ACR_NAME }}/python-app:latest
-        #run: |
-          #az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
+        #uses: docker/build-push-action@v3.3.0
+        #with:
+          #context: .
+          #push: true
+          #tags: ${{ secrets.ACR_NAME }}/python-app:latest
+        run: |
+          az acr build --image ${{ secrets.ACR_NAME }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ secrets.ACR_NAME }} -g ${{ env.RESOURCE_GROUP }} .
 
  
   deploy:
