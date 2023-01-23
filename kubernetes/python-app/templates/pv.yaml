@@ -17,6 +17,7 @@ spec:
       shareName: azurefile
     nodeStageSecretRef:
       name: azure-secret
+      namespace: staging
   mountOptions:
     - dir_mode=0777
     - file_mode=0777
