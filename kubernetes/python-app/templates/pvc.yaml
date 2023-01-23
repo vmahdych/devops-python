@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: azurefile
-  #namespace: {{ default "staging" .Release.Namespace }}
+  namespace: {{ default "staging" .Release.Namespace }}
 spec:
   accessModes:
     - ReadWriteMany
