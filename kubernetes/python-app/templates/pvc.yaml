@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: {{ default "staging" .Release.Namespace }}
-  name: my-azurefile
+  name: azurefile
+  namespace: {{ default "staging" .release.namespace }}
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: my-azurefile
+  storageClassName: azurefile-csi
+  volumeName: azurefile
   resources:
     requests:
       storage: 5Gi

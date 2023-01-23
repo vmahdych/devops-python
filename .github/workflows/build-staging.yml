@@ -48,6 +48,12 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
+      - name: Create a Kubernetes secret
+        run: |
+          kubectl create secret generic azure-secret \
+          --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
+          --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }}
+
       - name: Run Helm Deploy
         run: |
           helm upgrade \
@@ -58,5 +64,4 @@ jobs:
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }} \
-            --set image.tag=${{ github.sha }} \
-            --set global.storageClass=my-azurefile
+            --set image.tag=${{ github.sha }} 
