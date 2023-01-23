@@ -58,4 +58,5 @@ jobs:
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }} \
-            --set image.tag=${{ github.sha }}
+            --set image.tag=${{ github.sha }} \
+            --set global.storageClass=my-azurefile
