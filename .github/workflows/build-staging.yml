@@ -55,7 +55,8 @@ jobs:
         run: |
           kubectl create secret generic azure-secret \
           --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
-          --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }}
+          --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }} \
+          -n staging
 
       - name: Run Helm Deploy
         run: |
