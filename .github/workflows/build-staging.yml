@@ -48,8 +48,10 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
-      - name: Create a Kubernetes secret
+      - name: Remove old Kubernetes secret
         run: kubectl delete secret azure-secret
+
+      - name: Create Kubernetes secret
         run: |
           kubectl create secret generic azure-secret \
           --force \
