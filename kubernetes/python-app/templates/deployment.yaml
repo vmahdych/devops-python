@@ -28,8 +28,8 @@ spec:
               name: python-app
           volumeMounts:
             - name: volume
-              mountPath: "/mnt/azure"
-        volumes:
-          - name: volume
-            persistentVolumeClaim:
-              claimName: my-azurefile
+              mountPath: /mnt/azure
+      volumes:
+         - name: volume
+           persistentVolumeClaim:
+             claimName: my-azurefile

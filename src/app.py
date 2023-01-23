@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 photos=UploadSet("photos", IMAGES)
-app.config['UPLOADED_PHOTOS_DEST'] = './img'
+app.config['UPLOADED_PHOTOS_DEST'] = '/mnt/azure'
 app.config["SECRET_KEY"] = os.urandom(24)
 configure_uploads(app, photos)
 
