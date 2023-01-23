@@ -48,8 +48,8 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
-      - name: Remove old Kubernetes secret
-        run: kubectl delete secret azure-secret
+      #- name: Remove old Kubernetes secret
+      #  run: kubectl delete secret azure-secret
 
       - name: Create Kubernetes secret
         run: |
