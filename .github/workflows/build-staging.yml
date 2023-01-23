@@ -54,7 +54,6 @@ jobs:
       - name: Create Kubernetes secret
         run: |
           kubectl create secret generic azure-secret \
-          --force \
           --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
           --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }}
 
