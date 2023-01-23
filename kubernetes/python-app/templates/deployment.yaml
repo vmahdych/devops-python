@@ -26,3 +26,10 @@ spec:
           ports:
             - containerPort: 5000
               name: python-app
+          volumeMounts:
+          - mountPath: "/mnt/azure"
+            name: volume
+        volumes:
+          - name: volume
+            persistentVolumeClaim:
+              claimName: my-azurefile
