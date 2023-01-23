@@ -49,6 +49,7 @@ jobs:
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
       - name: Create a Kubernetes secret
+        run: kubectl delete secret azure-secret
         run: |
           kubectl create secret generic azure-secret \
           --force \
