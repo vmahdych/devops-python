@@ -13,9 +13,9 @@ spec:
   csi:
     driver: file.csi.azure.com
     readOnly: false
-    volumeHandle: azurefile
+    volumeHandle: imagestorage
     volumeAttributes:
-      shareName: azurefile
+      shareName: imagestorage
     nodeStageSecretRef:
       name: azure-secret
       namespace: {{ default "staging" .Release.Namespace }}
