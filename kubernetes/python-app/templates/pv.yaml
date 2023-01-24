@@ -13,6 +13,7 @@ spec:
   csi:
     driver: file.csi.azure.com
     readOnly: false
+    volumeHandle: azurefile
     volumeAttributes:
       shareName: azurefile
     nodeStageSecretRef:
