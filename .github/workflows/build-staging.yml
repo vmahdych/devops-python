@@ -49,7 +49,9 @@ jobs:
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
       - name: Remove old Kubernetes secret
-        run: kubectl delete secret azure-secret
+        run: |
+          kubectl delete secret azure-secret \
+          -n staging
 
       - name: Create Kubernetes secret
         run: |
