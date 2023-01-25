@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: azurefile-staging
-  namespace: staging
+  name: azurefile-production
+  namespace: production
   #namespace: {{ default "staging" .Release.Namespace }}
 spec:
   accessModes:
@@ -11,4 +11,4 @@ spec:
   volumeName: azurefile
   resources:
     requests:
-      storage: 1Gi
+      storage: 3Gi

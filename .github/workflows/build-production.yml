@@ -52,17 +52,15 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }} 
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
-      #- name: Remove old Kubernetes secret
-      #  run: |
-      #    kubectl delete secret azure-secret \
-      #    -n production
+      - name: Remove old Kubernetes secret
+        run: |
+          kubectl delete secret azure-secret 
 
-      #- name: Create Kubernetes secret
-      #  run: |
-      #    kubectl create secret generic azure-secret \
-      #    --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
-      #    --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }} \
-      #    -n production
+      - name: Create Kubernetes secret
+        run: |
+          kubectl create secret generic azure-secret \
+          --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
+          --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }} 
 
       - name: Run Helm Deploy
         run: |
