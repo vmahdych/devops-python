@@ -18,10 +18,31 @@ spec:
     - host: {{ .Release.Namespace }}.mahdych.vn.ua
       http:
         paths:
-          - backend:
+          - path: /health/?(.*)
+            pathType: Prefix
+            backend:
               service:
                 name: python-app
                 port:
                   name: python-app
-            path: /
+          - path: /upload/?(.*)
             pathType: Prefix
+            backend:
+              service:
+                name: python-app
+                port:
+                  name: python-app
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: python-app
+                port:
+                  name: python-app
+          - path: /details/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: python-app
+                port:
+                  name: python-app
