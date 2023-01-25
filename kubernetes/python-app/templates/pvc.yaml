@@ -7,7 +7,7 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: azurefile-csi
-  volumeName: azurefile
+  volumeName: azurefile-{{ default "staging" .Release.Namespace }}
   resources:
     requests:
       storage: 1Gi
