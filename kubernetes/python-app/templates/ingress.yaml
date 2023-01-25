@@ -4,11 +4,19 @@ metadata:
   name: python-app
   namespace: {{ default "staging" .Release.Namespace }}
   annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+    #kubernetes.io/ingress.class: addon-http-application-routing
 spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - staging.mahdych.vn.ua
+    secretName: tls-secret
   rules:
     #- host: python-app-{{ default "staging" .Release.Namespace }}.{{ .Values.dns.name }}
-    - host: mahdych.vn.ua
+    - host: staging.mahdych.vn.ua
       http:
         paths:
           - backend:
