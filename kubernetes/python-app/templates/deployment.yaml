@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app
-  namespace: {{ default "staging" .Release.Namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 3
   selector:
@@ -32,4 +32,4 @@ spec:
       volumes:
          - name: volume
            persistentVolumeClaim:
-             claimName: azurefile-{{ default "staging" .Release.Namespace }}
+             claimName: azurefile-{{ .Release.Namespace }}
