@@ -4,8 +4,8 @@ metadata:
   name: python-app
   namespace: {{ default "staging" .Release.Namespace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
+    #nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
@@ -18,31 +18,11 @@ spec:
     - host: {{ .Release.Namespace }}.mahdych.vn.ua
       http:
         paths:
-          - path: /health/?(.*)
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: python-app
                 port:
                   name: python-app
-          - path: /upload/?(.*)
+            path: /
             pathType: Prefix
-            backend:
-              service:
-                name: python-app
-                port:
-                  name: python-app
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: python-app
-                port:
-                  name: python-app
-          - path: /details/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: python-app
-                port:
-                  name: python-app
+
