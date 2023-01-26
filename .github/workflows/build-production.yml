@@ -65,7 +65,7 @@ jobs:
       #    -n production
 
       - name: Update the host in ingress file
-        run: sed -i 's/{{ .Release.Namespace }}.mahdych.vn.ua/mahdych.vn.ua/g' ./kubernetes/puthon-app/templates/ingress.yaml
+        run: find . -type f -exec sed -i 's/{{ .Release.Namespace }}.mahdych.vn.ua/mahdych.vn.ua/g' {} +
 
       - name: Run Helm Deploy
         run: |
