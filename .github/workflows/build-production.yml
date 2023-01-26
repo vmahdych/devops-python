@@ -52,17 +52,20 @@ jobs:
           resource-group: ${{ secrets.RESOURCE_GROUP }} 
           cluster-name: ${{ secrets.CLUSTER_NAME }}
 
-      - name: Remove old Kubernetes secret
-        run: |
-          kubectl delete secret azure-secret \
-          -n production
+      #- name: Remove old Kubernetes secret
+      #  run: |
+      #    kubectl delete secret azure-secret \
+      #    -n production
 
-      - name: Create Kubernetes secret
-        run: |
-          kubectl create secret generic azure-secret \
-          --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
-          --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }} \
-          -n production
+      #- name: Create Kubernetes secret
+      #  run: |
+      #    kubectl create secret generic azure-secret \
+      #    --from-literal=azurestorageaccountname=${{ secrets.STORAGE_ACCOUNT_NAME }} \
+      #    --from-literal=azurestorageaccountkey=${{ secrets.STORAGE_KEY }} \
+      #    -n production
+
+      - name: Update the host in ingress file
+        run: sed -i 's/{{ .Release.Namespace }}.mahdych.vn.ua/mahdych.vn.ua/g' ./kubernetes/puthon-app/templates/ingress.yaml
 
       - name: Run Helm Deploy
         run: |
