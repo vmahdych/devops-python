@@ -59,3 +59,9 @@
 - [x] Update appropriate DNS records;
 - [x] Create and run Cluster issues using Let`s Encrypt SSL;
 - [x] Update ingress if needed.
+
+
+## Things that can be implemented / improved:
+- Role Based Access Control
+- Livenes Probe
+- Improve images security
