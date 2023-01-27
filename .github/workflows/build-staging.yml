@@ -26,7 +26,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.ACR_NAME}}/${{ secrets.IMAGE }}:latest,${{ secrets.ACR_NAME }}/${{ secrets.IMAGE }}:${{ github.sha }}
+          tags: ${{secrets.ACR_NAME}}/${{ secrets.IMAGE }}:latest,${{ secrets.ACR_NAME }}/${{ secrets.IMAGE }}:${GITHUB_REF#refs/tags/}${{ github.sha }}
        
  
   deploy:
@@ -70,4 +70,4 @@ jobs:
             ./kubernetes/python-app \
             --set image.repository=${{ secrets.ACR_NAME }} \
             --set dns.name=${{ secrets.DNS_NAME }} \
-            --set image.tag=${{ github.sha }} 
+            --set image.tag=${GITHUB_REF#refs/tags/}-${{ github.sha }} 
