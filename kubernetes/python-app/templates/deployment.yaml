@@ -29,12 +29,6 @@ spec:
           volumeMounts:
             - name: volume
               mountPath: /mnt/azure
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 80
-            initialDelaySeconds: 30
-            periodSeconds: 10
       volumes:
          - name: volume
            persistentVolumeClaim:
