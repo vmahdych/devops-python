@@ -65,12 +65,13 @@
 - Role Based Access Control
 - Livenes Probe
 - Improve images security
+- Replace init.sh script with IaC instance (Terraform)
+- 
 
 
 ### Useful resources or what has been used during project creation:
 - personal [coach](https://chat.openai.com)
 - Azure tutorials:
   - [Azure File Storage](https://learn.microsoft.com/en-us/azure/aks/azure-csi-files-storage-provision)
-  - [Create ingress controller](https://learn.microsoft.com/en-us/azure/application-gateway/ingress-controller-add-health-probes)
   - [Set up SSL](https://learn.microsoft.com/en-us/azure/aks/ingress-tls?tabs=azure-cli)
   - [Azure DNS](https://learn.microsoft.com/en-us/azure/dns/private-dns-getstarted-cli)
