@@ -1,7 +1,7 @@
+import os
+import socket
 from flask import Flask, jsonify, render_template, request, redirect, url_for, send_from_directory, flash
 from flask_uploads import IMAGES, UploadSet, configure_uploads
-import socket
-import os
 
 app = Flask(__name__)
 photos=UploadSet("photos", IMAGES)
