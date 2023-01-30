@@ -23,7 +23,7 @@ jobs:
       - name: Analysing the code with pylint
         run: |
           pylint $(git ls-files '*.py')
-        continue-on-failure: true
+        continue-on-error: true
 
   build_push_image:
     runs-on: ubuntu-20.04
